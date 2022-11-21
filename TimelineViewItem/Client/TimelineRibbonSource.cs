@@ -44,7 +44,7 @@ namespace TimelineViewItem.Client
         {
             get
             {
-                return Color.Yellow;
+                return Color.Blue;
             }
         }
 
@@ -66,12 +66,18 @@ namespace TimelineViewItem.Client
             var nextBeginTime = new DateTime(interval.StartTime.Year, interval.StartTime.Month, interval.StartTime.Day, interval.StartTime.Hour, interval.StartTime.Minute, 0, DateTimeKind.Utc);
             if (nextBeginTime < interval.StartTime)
                 nextBeginTime = nextBeginTime.AddMinutes(1);
-            var nextEndTime = nextBeginTime.AddSeconds(10);
-            while (nextEndTime < interval.EndTime)
+            var nextEndTime = nextBeginTime.AddMinutes(1);
+
+            // Simulate a process that makes 10 minute batches of events available on completion of that 10 minute period.
+
+            var minTicks = Math.Min(DateTime.UtcNow.AddMinutes(-10).Ticks, interval.EndTime.Ticks);
+            var endTime = new DateTime(minTicks, DateTimeKind.Utc);
+
+            while (nextEndTime <= endTime)
             {
                 result.Add(new TimelineDataArea(new TimeInterval(nextBeginTime, nextEndTime)));
                 nextBeginTime = nextBeginTime.AddMinutes(1);
-                nextEndTime = nextBeginTime.AddSeconds(10);
+                nextEndTime = nextBeginTime.AddMinutes(1);
             }
             return result;
         }
