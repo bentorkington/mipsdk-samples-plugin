@@ -10,7 +10,10 @@
              PreviewMouseDoubleClick="OnMouseDoubleClick"
              PreviewMouseLeftButtonUp ="OnMouseLeftUp"
              >
-    <Grid>
-        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Timeline View Item"/>
+    <Grid Background="LightGray">
+        <StackPanel VerticalAlignment="Center" Margin="15">
+            <TextBlock>Ribbon length in seconds:</TextBlock>
+            <Slider VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" Minimum="0" Maximum="60" Value="10" IsSnapToTickEnabled="True" TickFrequency="10" TickPlacement="Both" />
+        </StackPanel>
     </Grid>
 </external:ViewItemWpfUserControl>

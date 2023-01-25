@@ -1,4 +1,5 @@
-﻿using VideoOS.Platform.Client;
+﻿using System.Windows.Controls;
+using VideoOS.Platform.Client;
 
 namespace TimelineViewItem.Client
 {
@@ -96,5 +97,9 @@ namespace TimelineViewItem.Client
 
         #endregion
 
+        private void Slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
+        {
+            _viewItemManager.RibbonLengthInSeconds = (sender as Slider).Value;
+        }
     }
 }
