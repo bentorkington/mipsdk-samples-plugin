@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
@@ -44,7 +44,7 @@ namespace TimelineViewItem.Client
         {
             get
             {
-                return Color.Yellow;
+                return Color.Orange;
             }
         }
 
